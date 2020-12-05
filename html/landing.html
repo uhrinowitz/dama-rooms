@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Pikk dáma játék</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script
+			src="https://code.jquery.com/jquery-3.4.1.js"
+			integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" href="style.css">
+		<!-- add icon link -->
+		<link rel = "icon" href = "https://cdn3.iconfinder.com/data/icons/casino-2/256/Playing_Cards-512.png" type = "image/x-icon">
+	</head>
+
+	<body>
+        <a href="index.html" onclick="joinRoom1()">Szoba1</a>
+        <a onclick="joinRoom2()">Szoba2</a>
+    
+</body>
+
+<script>
+    var socket = io.connect('http://localhost:4200/')//('https://pikk-dama.herokuapp.com/');
+    let mySocket = socket.io.engine.id;
+    console.log(mySocket)
+    function joinRoom1(){
+        //socket.join("room1");
+        let mySocket = socket.io.engine.id;
+        data = {
+            room: "room1",
+            mySocket: mySocket
+        }
+        console.log(mySocket)
+        socket.emit("joinRoom", data);
+    }
+    function joinRoom2(){
+        let mySocket = socket.io.engine.id;
+        console.log(mySocket)
+        //socket.emit("joinRoom", "room2");
+    }
+    // let domTarget;
+    // let deskAlreadyOrdered = false;
+    // let localPlayerNumber;
+    
+    // // when client connects to server
+    //     socket.on('connect', (data) => {
+    //         let playerSocketID = socket.io.engine.id;
+    //         console.log(playerSocketID)
+    //         socket.emit('join', playerSocketID);
+    //     });
+        
+    //     // listens to welcome
+    //     socket.on('welcome', (data)  => {
+    //         console.log("server started");
+    //     });
+        
+    //     // listens to when all players joined and notify server
+    //     socket.on('onePlayerJoined', (counter)  =>{
+    //         ////console.log("Number of connections: " + counter);
+    //         if(counter == 4){
+    //             socket.emit('letTheGameBegin', '');
+    //         }
+    //     });
+    </script>     
+</html>
